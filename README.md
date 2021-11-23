@@ -36,3 +36,7 @@ Iniciar el servicio
 ```
 docker-compose up -d
 ```
+## Acceder al servidor web de predicción
+```
+http://172.20.0.5:5000/flights/delays/predict_kafka
+```
