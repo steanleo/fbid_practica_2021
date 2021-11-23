@@ -21,6 +21,8 @@ services:
   flask:
     container_name: flask1
     image: flask
+    expose:
+      - "5000"
     networks:
       fbid:
         ipv4_address: 172.20.0.5
