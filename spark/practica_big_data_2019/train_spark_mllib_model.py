@@ -53,7 +53,7 @@ def main(base_path):
     StructField("Origin", StringType(), True),      # "Origin":"TUS"
   ])
   
-  input_path = "{}/data/simple_flight_delay_features.jsonl.bz2".format(
+  input_path = "{}/simple_flight_delay_features.jsonl.bz2".format(
     base_path
   )
   features = spark.read.json(input_path, schema=schema)
