@@ -1,0 +1,43 @@
+FROM ubuntu:20.04
+ARG DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Madrid
+
+ADD practica_big_data_2019/. /home/practica_big_data_2019
+ADD spark-3.1.2-bin-hadoop3.2/. /opt/spark
+#ADD kafka_2.12-3.0.0/. /opt/kafka
+
+WORKDIR /home/practica_big_data_2019
+
+RUN chmod 755 script.sh
+RUN apt-get update && apt-get install -yqq \
+  default-jdk \
+  default-jre \
+  nano \
+  python3.8 \
+  python3-pip \
+  apt-transport-https \
+  curl \
+  gnupg \
+  wget
+
+RUN pip install -r requirements.txt
+
+RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian all main" | tee /etc/apt/sources.list.d/sbt.list
+RUN echo "deb https://repo.scala-sbt.org/scalasbt/debian /" | tee /etc/apt/sources.list.d/sbt_old.list
+RUN curl -sL "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2EE0EA64E40A89B84B2DF73499E82A75642AC823" | gpg --no-default-keyring --keyring gnupg-ring:/etc/apt/trusted.gpg.d/scalasbt-release.gpg --import
+RUN chmod 644 /etc/apt/trusted.gpg.d/scalasbt-release.gpg
+
+RUN wget -qO - https://www.mongodb.org/static/pgp/server-5.0.asc | apt-key add -
+RUN echo "deb [ arch=amd64,arm64 ] https://repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-5.0.list
+RUN apt-get update && apt-get install -y \
+  sbt \
+  mongodb-org
+
+ENV JAVA_HOME=/usr/lib/jvm/java-11-openjdk-amd64
+ENV SPARK_HOME=/opt/spark
+#ENV PROJECT_HOME=/home/practica_big_data_2019
+#ENV KAFKA_HOME=/opt/kafka
+ENV PATH=$PATH:$SPARK_HOME/bin:$SPARK_HOME/sbin
+#:$KAFKA_HOME/bin
+
+CMD ["/home/practica_big_data_2019/script.sh"]
