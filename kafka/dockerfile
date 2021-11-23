@@ -1,0 +1,21 @@
+FROM ubuntu:20.04
+
+RUN apt-get update && apt-get install -y \
+  default-jdk \
+  default-jre \
+  nano \
+  systemctl
+
+ADD kafka_2.12-3.0.0/. /opt/kafka
+COPY zookeeper.service /etc/systemd/system/
+COPY kafka.service /etc/systemd/system/
+COPY script.sh /
+RUN chmod 755 /script.sh
+
+ENV KAFKA_HOME=/opt/kafka
+ENV PATH=$PATH:$KAFKA_HOME/bin
+
+ENTRYPOINT ["/script.sh"]
+
+EXPOSE 2181/tcp
+EXPOSE 9092/tcp

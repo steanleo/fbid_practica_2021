@@ -1,0 +1,31 @@
+version: '3'
+services:
+  mongo:
+    container_name: mongo1
+    image: mongo:latest
+    networks:
+      fbid:
+        ipv4_address: 172.20.0.2
+  kafka:
+    container_name: kafka1
+    image: kafka
+    networks:
+      fbid:
+        ipv4_address: 172.20.0.3
+  spark:
+    container_name: spark1
+    image: spark
+    networks:
+      fbid:
+        ipv4_address: 172.20.0.4
+  flask:
+    container_name: flask1
+    image: flask
+    networks:
+      fbid:
+        ipv4_address: 172.20.0.5
+networks:
+  fbid:
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
