@@ -8,19 +8,19 @@ services:
         ipv4_address: 172.20.0.2
   kafka:
     container_name: kafka1
-    image: kafka
+    image: steanleo/kafka
     networks:
       fbid:
         ipv4_address: 172.20.0.3
   spark:
     container_name: spark1
-    image: spark
+    image: steanleo/spark
     networks:
       fbid:
         ipv4_address: 172.20.0.4
   flask:
     container_name: flask1
-    image: flask
+    image: steanleo/flask
     expose:
       - "5000"
     networks:
