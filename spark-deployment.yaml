@@ -25,7 +25,7 @@ spec:
         io.kompose.service: spark
     spec:
       containers:
-        - image: spark
+        - image: steanleo/spark
           name: spark1
           resources: {}
       restartPolicy: Always
