@@ -27,7 +27,7 @@ docker run -d --network fbid_net --ip 172.20.0.4 --name sparkServer spark
 docker run -d --network fbid_net --ip 172.20.0.5 --name webServer flask
 ```
 ## Ejecutando con docker-compose
-Eliminar los contenedores creados anteriormente, para evitar conflictos
+Si, previamente, se crearon los contenedores con docker-engine, se recomienda eliminarlos para evitar conflictos
 ```
 docker stop mongoServer kafkaServer sparkServer webServer
 docker system prune
