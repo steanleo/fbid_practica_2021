@@ -14,8 +14,15 @@ services:
   spark:
     container_name: spark
     image: steanleo/spark
+    depends_on:
+      - kafka
+      - mongo
   flask:
     container_name: flask
     image: steanleo/flask
     ports:
       - 5000:5000
+    depends_on:
+      - kafka
+      - mongo
+      - spark
