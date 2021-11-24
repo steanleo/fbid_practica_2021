@@ -3,31 +3,19 @@ services:
   mongo:
     container_name: mongo1
     image: mongo:latest
-    networks:
-      fbid:
-        ipv4_address: 172.20.0.2
+    expose:
+      - "27017"
   kafka:
-    container_name: kafka1
-    image: steanleo/kafka
-    networks:
-      fbid:
-        ipv4_address: 172.20.0.3
+    container_name: steanleo/kafka
+    image: kafkai
+    expose:
+      - "2181"
+      - "9092"
   spark:
     container_name: spark1
     image: steanleo/spark
-    networks:
-      fbid:
-        ipv4_address: 172.20.0.4
   flask:
     container_name: flask1
     image: steanleo/flask
     expose:
       - "5000"
-    networks:
-      fbid:
-        ipv4_address: 172.20.0.5
-networks:
-  fbid:
-    ipam:
-      config:
-        - subnet: 172.20.0.0/24
