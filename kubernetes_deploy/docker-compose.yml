@@ -17,5 +17,5 @@ services:
   flask:
     container_name: flask
     image: steanleo/flask
-    expose:
-      - "5000"
+    ports:
+      - 5000:5000
