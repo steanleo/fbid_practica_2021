@@ -20,7 +20,7 @@ docker run -d --network fbid_net --network-alias flask --name flask steanleo/fla
 ## Ejecutando con docker-compose
 Si, previamente, se crearon los contenedores con docker-engine, se recomienda eliminarlos para evitar conflictos
 ```
-docker stop mongoServer kafkaServer sparkServer webServer
+docker stop mongo kafka spark flask
 docker system prune
 ```
 Iniciar el servicio
