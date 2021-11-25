@@ -12,10 +12,10 @@ docker network create fbid_net
 ```
 Iniciar en segundo plano cada uno de los contenedores
 ```
-docker run -d --network fbid_net --network-alias mongo --name mongoServer mongo:latest
-docker run -d --network fbid_net --network-alias kafka --name kafkaServer steanleo/kafka
-docker run -d --network fbid_net --network-alias spark --name sparkServer steanleo/spark
-docker run -d --network fbid_net --network-alias flask --name webServer steanleo/flask
+docker run -d --network fbid_net --network-alias mongo --name mongo mongo:latest
+docker run -d --network fbid_net --network-alias kafka --name kafka steanleo/kafka
+docker run -d --network fbid_net --network-alias spark --name spark steanleo/spark
+docker run -d --network fbid_net --network-alias flask --name flask steanleo/flask
 ```
 ## Ejecutando con docker-compose
 Si, previamente, se crearon los contenedores con docker-engine, se recomienda eliminarlos para evitar conflictos
