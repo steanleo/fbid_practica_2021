@@ -1,6 +1,16 @@
-Instalar kompose para convertir docker-compose para kubernetes
+# Instalar kompose para convertir docker-compose para kubernetes
 sudo curl -L https://github.com/kubernetes/kompose/releases/download/v1.22.0/kompose-linux-amd64 -o /usr/local/bin/kompose
 chmod a+x /usr/local/bin/kompose
 
-Conversion
+# Conversion
 kompose convert 
+
+# Ver el listado de nodos del cluster
+kubectl get nodes
+
+# Desplegar las cargas de trabajo y servicios
+kubectl apply -f [kafka-deployment.yaml]
+kubectl apply -f [kafka-service.yaml]
+
+# Escalar una aplicación
+kubectl scale deployment --replicas=[n] [service]
