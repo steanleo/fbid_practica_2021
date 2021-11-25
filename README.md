@@ -5,15 +5,6 @@ Asignar permisos de ejecución a docker.sock:
 ```
 sudo chmod 666 /var/run/docker.sock
 ```
-## Crear las imágenes docker para flask, kafka y spark
-```
-cd flask
-docker build -t flask .
-cd .. && cd kafka
-docker build -t kafka .
-cd .. && cd spark
-docker build -t spark .
-```
 ## Ejecutando con docker-engine
 Crear la red a la que estarán conectados los contenedores
 ```
@@ -22,9 +13,9 @@ docker network create fbid_net
 Iniciar en segundo plano cada uno de los contenedores
 ```
 docker run -d --network fbid_net --network-alias mongo --name mongoServer mongo:latest
-docker run -d --network fbid_net --network-alias kafka --name kafkaServer kafka
-docker run -d --network fbid_net --network-alias spark --name sparkServer spark
-docker run -d --network fbid_net --network-alias flask --name webServer flask
+docker run -d --network fbid_net --network-alias kafka --name kafkaServer steanleo/kafka
+docker run -d --network fbid_net --network-alias spark --name sparkServer steanleo/spark
+docker run -d --network fbid_net --network-alias flask --name webServer steanleo/flask
 ```
 ## Ejecutando con docker-compose
 Si, previamente, se crearon los contenedores con docker-engine, se recomienda eliminarlos para evitar conflictos
