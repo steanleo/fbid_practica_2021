@@ -1,5 +1,6 @@
 # fbid_practica_2021
 Practica final de la materia FBID del Máster en Ingienería de Redes y Servicios Telemáticos, UPM, 2021
+Observación: agregar la descripción del trabajo.
 
 Asignar permisos de ejecución a docker.sock:
 ```
